@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #timer {
+      font-size: 48px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+    <!-- timer -->
+  <div id="timer">01:22:2</div>
+
+  <script>
+    // JavaScript code
+    var timer;
+    var seconds = 0;
+    var minutes = 0;
+    var hours = 0;
+
+    function startTimer() {
+      timer = setInterval(updateTimer, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+    }
+
+    function resetTimer() {
+      stopTimer();
+      seconds = 0;
+      minutes = 0;
+      hours = 0;
+      updateTimerDisplay();
+    }
+
+    function updateTimer() {
+      seconds++;
+
+      if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+
+        if (minutes >= 60) {
+          minutes = 0;
+          hours++;
+        }
+      }
+
+      updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+      var timeString = pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+      document.getElementById("timer").innerHTML = timeString;
+    }
+
+    function pad(value) {
+      return value.toString().padStart(2, '0');
+    }
+  </script>
+</body>
+</html>
